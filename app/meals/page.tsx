@@ -2,12 +2,22 @@ import MealGrid from '@/Components/Meals/meals-grid'
 import classes from './page.module.css'
 import Link from 'next/link'
 import { getMeals } from '@/lib/meals'
-import { log } from 'console';
+import { Suspense } from 'react'
 
-export default async function  Meals(){
 
+export const metadata = {
+    title: 'All Meals',
+    description: 'Browse.',
+  };
+  
+
+async function FetchMeals() {
     const mealsData = await getMeals();
-    log("m", mealsData)
+    return <MealGrid meals={mealsData} />;
+}
+
+export default  function  Meals(){
+
 
     return(
         <>
@@ -25,7 +35,9 @@ export default async function  Meals(){
             </header>
 
             <main className={classes.main}>
-                <MealGrid meals={mealsData} />
+                <Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
+                    <FetchMeals/>
+                </Suspense>
             </main>
         </>
     )

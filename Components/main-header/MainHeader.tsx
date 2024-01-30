@@ -20,10 +20,10 @@ export default function MainHeader(){
                 <nav className={styles.nav}>
                     <ul>
                         <li>
-                           <NavPathLink href={'/meals'} children={"Browse Meals"} />
+                           <NavPathLink href={'/meals'} >Browse Meals</NavPathLink>
                         </li>
                         <li>
-                            <NavPathLink href={'/community'} children={"Foodie Community"} />
+                            <NavPathLink href={'/community'} >Foodie Community </NavPathLink>
                         </li>
                     </ul>
                 </nav>
